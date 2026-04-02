@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Alert from '../components/Alert';
 import Loader from '../components/Loader';
-import { FmapPin, FaTruck, FaCreditCard } from 'react-icons/fa';
+import { FaMapPin, FaTruck, FaCreditCard } from 'react-icons/fa';
 import { MdPayment, MdLocationOn, MdLocalShipping } from 'react-icons/md';
 import { orderService } from '../services/api';
 import './Checkout.css';
