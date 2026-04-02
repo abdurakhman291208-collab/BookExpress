@@ -78,7 +78,7 @@ function App() {
   }
   
   // Проверяем является ли пользователь курьером
-  const isCourier = true;
+  const isCourier = user?.isCourier || false;
 
   const handleLogout = () => {
     setUser(null);

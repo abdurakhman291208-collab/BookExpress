@@ -47,7 +47,7 @@ export default function Profile() {
     }, 5000);
     
     return () => clearInterval(interval);
-  }, []);
+  }, [navigate]);
 
   /**
    * Загрузить данные пользователя, его заказы и статус приложения
