@@ -37,79 +37,71 @@ export default function Profile() {
   });
   const [submittingCourier, setSubmittingCourier] = useState(false);
 
-  useEffect(() => {
-    /**
-     * Загрузить данные пользователя, его заказы и статус приложения
-     */
-    const loadUserData = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          navigate('/login');
-          return;
-        }
-
-        const profileResponse = await authService.getProfile();
-        const userData = profileResponse.data;
-        setUser(userData);
-        
-        // Обновить localStorage, чтобы синхронизировать состояние по всему приложению
-        localStorage.setItem('user', JSON.stringify(userData));
-        
-        setFormData({
-          name: userData.name,
-          phone: userData.phone,
-          address: userData.address || '',
-          city: userData.city || '',
-        });
-
-        // Определить состояние курьера
-        if (userData.isCourier) {
-          setCourierFormState('approved');
-          return;
-        }
-
-        const ordersResponse = await orderService.getUserOrders();
-        setOrders(ordersResponse.data);
-
-        // Загрузить статус приложения курьера
-        try {
-          const appsResponse = await courierService.getApplications();
-          if (appsResponse.data && appsResponse.data.length > 0) {
-            const app = appsResponse.data[0];
-            setCourierStatus(app);
-            // Установить состояние формы в зависимости от статуса приложения
-            if (app.status === 'approved') {
-              setCourierFormState('approved');
-            } else if (app.status === 'pending') {
-              setCourierFormState('pending');
-            }
-          }
-        } catch (error) {
-          // Заявка может не существовать, это нормально
-        }
-      } catch (error) {
-        setAlert({
-          message: 'Не удалось загрузить профиль',
-          type: 'error',
-        });
+  /**
+   * Загрузить данные пользователя, его заказы и статус приложения
+   */
+  const loadUserData = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
         navigate('/login');
-      } finally {
-        setLoading(false);
+        return;
       }
-    };
-    
+
+      const profileResponse = await authService.getProfile();
+      const userData = profileResponse.data;
+      setUser(userData);
+
+      localStorage.setItem('user', JSON.stringify(userData));
+
+      setFormData({
+        name: userData.name,
+        phone: userData.phone,
+        address: userData.address || '',
+        city: userData.city || '',
+      });
+
+      if (userData.isCourier) {
+        setCourierFormState('approved');
+        return;
+      }
+
+      const ordersResponse = await orderService.getUserOrders();
+      setOrders(ordersResponse.data);
+
+      try {
+        const appsResponse = await courierService.getApplications();
+        if (appsResponse.data?.length > 0) {
+          const app = appsResponse.data[0];
+          setCourierStatus(app);
+
+          if (app.status === 'approved') setCourierFormState('approved');
+          else if (app.status === 'pending') setCourierFormState('pending');
+        }
+      } catch (e) {
+        // Заявка может не существовать, это нормально
+      }
+    } catch (error) {
+      setAlert({
+        message: 'Не удалось загрузить профиль',
+        type: 'error',
+      });
+      navigate('/login');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     loadUserData();
-    
-    // Polling для обновления статуса курьера каждые 5 секунд
+
     const interval = setInterval(() => {
       console.log('🔄 Polling user status...');
       loadUserData();
     }, 5000);
-    
+
     return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [navigate]);
 
   /**
    * Валидация формы профиля
