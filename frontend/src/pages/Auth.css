@@ -1,0 +1,250 @@
+/* ============================================
+   СТРАНИЦЫ АУТЕНТИФИКАЦИИ (Вход и Регистрация)
+   ============================================ */
+
+.auth-page {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.auth-card {
+  background: white;
+  border: 2px solid #dddddd;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  width: 100%;
+  animation: slideInUp 0.4s ease;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Заголовок формы */
+.auth-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.auth-header p {
+  color: #666666;
+  font-size: 14px;
+}
+
+/* Форма */
+.auth-card form {
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333333;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #dddddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.form-group input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-group input.input-error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #999999;
+}
+
+.error-message {
+  display: block;
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Кнопки */
+.auth-card .btn {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-card .btn-primary {
+  background-color: #7c3aed;
+  color: white;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2);
+}
+
+.auth-card .btn-primary:hover:not(:disabled) {
+  background-color: #6d28d9;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+  transform: translateY(-2px);
+}
+
+.auth-card .btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.auth-card .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Подвал */
+.auth-footer {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.auth-footer p {
+  margin: 12px 0;
+  color: #666666;
+  font-size: 14px;
+}
+
+.auth-link {
+  color: #7c3aed;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.auth-link:hover {
+  color: #6d28d9;
+  text-decoration: underline;
+}
+
+.demo-hint {
+  background-color: #fef3c7;
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 4px solid #f59e0b;
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+.demo-hint strong {
+  color: #92400e;
+  font-family: 'Courier New', monospace;
+}
+
+/* Адаптивность таблеты */
+@media (max-width: 768px) {
+  .auth-page {
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .auth-card {
+    padding: 30px 24px;
+    border-radius: 12px;
+  }
+
+  .auth-header h1 {
+    font-size: 24px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+}
+
+/* Адаптивность мобильные */
+@media (max-width: 480px) {
+  .auth-page {
+    padding: 12px;
+  }
+
+  .auth-card {
+    padding: 24px 16px;
+    border-radius: 10px;
+  }
+
+  .auth-header h1 {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  .auth-header p {
+    font-size: 12px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-group input {
+    padding: 12px 12px;
+    font-size: 16px;
+  }
+
+  .auth-footer {
+    padding-top: 16px;
+  }
+
+  .auth-footer p {
+    font-size: 12px;
+    margin: 8px 0;
+  }
+
+  .demo-hint {
+    padding: 10px;
+    font-size: 11px;
+  }
+}

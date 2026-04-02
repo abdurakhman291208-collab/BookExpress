@@ -1,0 +1,115 @@
+.home-page {
+padding: 40px 0;
+min-height: 100vh;
+}
+
+.page-header {
+text-align: center;
+margin-bottom: 40px;
+}
+
+.page-header h1 {
+font-size: 32px;
+margin-bottom: 10px;
+color: #333333;
+font-weight: 700;
+}
+
+.page-header p {
+color: #666666;
+font-size: 16px;
+}
+
+/* Поиск */
+.search-container {
+margin-bottom: 40px;
+}
+
+.search-input {
+width: 100%;
+padding: 12px 16px;
+border: 2px solid #ddd;
+border-radius: 8px;
+font-size: 16px;
+}
+
+/* ===== КАРТОЧКИ ===== */
+
+.book-card {
+background: white;
+border: 1px solid #ddd;
+border-radius: 10px;
+overflow: hidden;
+transition: 0.3s;
+display: flex;
+flex-direction: column;
+}
+
+.book-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.book-image {
+  width: 100%;
+}
+
+.book-image img {
+  width: 100%;
+  
+  display: block;
+  border-radius: 8px;
+}
+
+/* Контент */
+.book-content {
+padding: 14px;
+display: flex;
+flex-direction: column;
+flex: 1;
+}
+
+.book-title {
+font-size: 15px;
+font-weight: 600;
+margin-bottom: 6px;
+}
+
+.book-author {
+font-size: 12px;
+color: #777;
+margin-bottom: 8px;
+}
+
+.book-price {
+font-size: 18px;
+font-weight: 700;
+color: #7c3aed;
+margin-top: auto;
+}
+
+/* ===== СЕТКА ===== */
+
+.grid {
+display: grid;
+gap: 20px;
+}
+
+.grid-3 {
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/* ===== АДАПТИВ ===== */
+
+@media (max-width: 768px) {
+.grid-3 {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (max-width: 480px) {
+.grid-3 {
+grid-template-columns: 1fr;
+}
+
+}
