@@ -17,26 +17,25 @@ export default function OrderConfirmed() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadOrderData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  /**
-   * Загрузить информацию о заказе
-   */
-  const loadOrderData = async () => {
-    try {
-      const orderId = location.state?.orderId;
-      if (orderId) {
-        const response = await orderService.getOrder(orderId);
-        setOrder(response.data);
+    /**
+     * Загрузить информацию о заказе
+     */
+    const loadOrderData = async () => {
+      try {
+        const orderId = location.state?.orderId;
+        if (orderId) {
+          const response = await orderService.getOrder(orderId);
+          setOrder(response.data);
+        }
+      } catch (error) {
+        console.error('Ошибка загрузки заказа:', error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error('Ошибка загрузки заказа:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
+
+    loadOrderData();
+  }, [location]);
 
   if (loading) return <Loader message="Загрузка информации о заказе..." />;
 
