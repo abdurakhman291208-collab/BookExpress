@@ -18,7 +18,8 @@ export default function OrderConfirmed() {
 
   useEffect(() => {
     loadOrderData();
-  }, [location]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /**
    * Загрузить информацию о заказе

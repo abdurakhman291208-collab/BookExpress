@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Alert from '../components/Alert';
-import Loader from '../components/Loader';
 import { authService } from '../services/api';
 import './Auth.css';
 

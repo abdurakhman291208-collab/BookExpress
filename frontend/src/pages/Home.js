@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Alert from '../components/Alert';
 import Loader from '../components/Loader';
 import { bookService } from '../services/api';
@@ -10,7 +9,6 @@ import './Home.css';
  * Отображает список доступных книг с функцией поиска и добавления в корзину
  */
 export default function Home() {
-  const navigate = useNavigate();
   const [books, setBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);

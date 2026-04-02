@@ -15,7 +15,6 @@ export default function Profile() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
-  const [courierStatus, setCourierStatus] = useState(null);
   const [courierFormState, setCourierFormState] = useState('form'); // 'form', 'pending', 'approved'
   const [formData, setFormData] = useState({
     name: '',
@@ -47,7 +46,8 @@ export default function Profile() {
     }, 5000);
     
     return () => clearInterval(interval);
-  }, [navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /**
    * Загрузить данные пользователя, его заказы и статус приложения
@@ -218,7 +218,7 @@ export default function Profile() {
   const handleCourierSubmit = async (e) => {
     e.preventDefault();
     
-    const { isValid, errors: validationErrors } = validateCourierForm();
+    const { isValid } = validateCourierForm();
     if (!isValid) {
       setAlert({ message: 'Заполните все обязательные поля корректно', type: 'error' });
       return;
@@ -247,22 +247,6 @@ export default function Profile() {
       });
     } finally {
       setSubmittingCourier(false);
-    }
-  };
-
-  /**
-   * Получить класс статуса приложения
-   */
-  const getStatusClass = (status) => {
-    switch (status) {
-      case 'pending':
-        return 'status-pending';
-      case 'approved':
-        return 'status-approved';
-      case 'rejected':
-        return 'status-rejected';
-      default:
-        return 'status-unknown';
     }
   };
 
